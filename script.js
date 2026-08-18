@@ -362,11 +362,19 @@ function playMelody() {
 // ---------- Controls ----------
 const muteBtn = document.getElementById('mute-btn');
 
+let musicStarted = false;
 function startMusicOnce() {
+  if (musicStarted) return;
+  musicStarted = true;
   ensureAudio();
   if (muted) masterGain.gain.value = 0;
   playMelody();
 }
+
+// try to autoplay right away; browsers may still require a gesture,
+// so a fallback listener below starts it on the first interaction instead
+startMusicOnce();
+
 ['click', 'touchstart', 'keydown'].forEach((evt) => {
   document.addEventListener(evt, startMusicOnce, { once: true });
 });
