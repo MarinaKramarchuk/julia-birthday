@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Юлічко, з Днем Народження!</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Libre+Franklin:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<button id="mute-btn" class="icon-btn" aria-label="Звук">🔊</button>
+
+<header class="hero">
+  <div class="hero-sparks" id="hero-sparks"></div>
+  <div class="hero-decor" aria-hidden="true">
+    <svg class="decor balloon balloon-1" viewBox="0 0 60 96" width="60" height="96">
+      <path d="M30 66 L26 76 L34 76 Z" fill="var(--coral)"/>
+      <path d="M30 76 Q36 84 29 92" stroke="rgba(247,236,217,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="30" cy="33" rx="28" ry="33" fill="var(--coral)"/>
+      <ellipse cx="19" cy="19" rx="7" ry="11" fill="rgba(255,255,255,0.22)"/>
+    </svg>
+    <svg class="decor balloon balloon-2" viewBox="0 0 60 96" width="60" height="96">
+      <path d="M30 66 L26 76 L34 76 Z" fill="var(--gold)"/>
+      <path d="M30 76 Q24 84 31 92" stroke="rgba(247,236,217,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="30" cy="33" rx="28" ry="33" fill="var(--gold)"/>
+      <ellipse cx="19" cy="19" rx="7" ry="11" fill="rgba(255,255,255,0.22)"/>
+    </svg>
+    <svg class="decor balloon balloon-3" viewBox="0 0 60 96" width="60" height="96">
+      <path d="M30 66 L26 76 L34 76 Z" fill="var(--gold-soft)"/>
+      <path d="M30 76 Q36 84 29 92" stroke="rgba(247,236,217,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="30" cy="33" rx="28" ry="33" fill="var(--gold-soft)"/>
+      <ellipse cx="19" cy="19" rx="7" ry="11" fill="rgba(255,255,255,0.22)"/>
+    </svg>
+    <svg class="decor cake" viewBox="0 0 100 92" width="100" height="92">
+      <ellipse class="flame" cx="50" cy="9" rx="4" ry="7" fill="var(--gold-soft)"/>
+      <rect x="47" y="15" width="6" height="15" rx="2" fill="var(--cream)"/>
+      <rect x="24" y="34" width="52" height="24" rx="5" fill="var(--coral)"/>
+      <rect x="24" y="34" width="52" height="6" rx="3" fill="var(--cream)" opacity="0.45"/>
+      <rect x="8" y="60" width="84" height="26" rx="5" fill="var(--gold)"/>
+      <rect x="8" y="60" width="84" height="6" rx="3" fill="var(--cream)" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <p class="eyebrow">04 вересня · день, який чекали</p>
+    <h1><span class="line line-gold">Юлічка-красотулічка,</span><span class="line">з Днем Народження!!!</span></h1>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">↓</div>
+</header>
+
+<section class="collage reveal" aria-label="Колаж фото">
+  <p class="eyebrow eyebrow-center">На згадку</p>
+  <h2 class="section-title">Моменти, які люблю</h2>
+  <p class="collage-note">їх було набагато більше, але я загубила телефон з фотками</p>
+  <div class="collage-grid" id="collage-grid"></div>
+</section>
+
+
+<section class="greeting reveal" aria-label="Привітання">
+  <div class="greeting-card">
+    <p>Юлічка, моя найкраща у світі квіточка! 🌸</p>
+    <p>Вітаю тебе з Днем народження, бажаю тобі всього-всього!! Безмежного щастя, удачі, любові! 🌷</p>
+    <p>Щоб кожен день приносив щось хороше! Щоб сльози були тільки від радості! 🌹</p>
+    <p>І щоб ми з тобою двічі на рік подорожували куди схотіли!</p>
+    <p>Я вдячна Богу, що ти в мене є! 💐</p>
+    <p class="greeting-final">Люблю тебе безмежно.</p>
+  </div>
+</section>
+
+<section class="money-rain reveal" aria-label="Побажання достатку">
+  <div class="money-decor" id="money-decor" aria-hidden="true"></div>
+  <p class="money-rain-text">Щоб тебе завжди<br>засипало грошима! 💸</p>
+  <img src="cat-money.gif" alt="Котик серед грошей" class="money-cat">
+</section>
+
+<section class="toast reveal" aria-label="Побажання здоров'я">
+  <div class="toast-bubbles" id="toast-bubbles" aria-hidden="true"></div>
+  <div class="toast-glasses">
+    <svg class="glass glass-left" viewBox="0 0 40 150" width="66" height="248">
+      <ellipse cx="20" cy="128" rx="17" ry="3.5" fill="rgba(10,6,14,0.3)"/>
+      <path d="M8 4 C4 30 6 58 17 80 L23 80 C34 58 36 30 32 4 Z" fill="rgba(247,236,217,0.14)" stroke="rgba(247,236,217,0.4)" stroke-width="0.7"/>
+      <path d="M11 14 C8 34 10 56 18 74 L22 74 C30 56 32 34 29 14 Z" fill="var(--gold-soft)"/>
+      <path d="M11 14 C8 34 10 56 18 74" fill="none" stroke="rgba(169,122,31,0.4)" stroke-width="0.8"/>
+      <ellipse cx="20" cy="4.5" rx="12" ry="2" fill="none" stroke="rgba(247,236,217,0.5)" stroke-width="0.8"/>
+      <circle cx="17" cy="62" r="1" fill="var(--cream)" opacity="0.7"/>
+      <circle cx="20.5" cy="46" r="0.8" fill="var(--cream)" opacity="0.6"/>
+      <circle cx="16.5" cy="30" r="1.1" fill="var(--cream)" opacity="0.6"/>
+      <path d="M10 10 C7 30 8 48 13 62" stroke="rgba(255,255,255,0.6)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      <rect x="19" y="80" width="2" height="38" rx="1" fill="var(--cream)"/>
+      <ellipse cx="20" cy="123" rx="12" ry="3" fill="var(--cream)"/>
+      <ellipse cx="20" cy="123" rx="12" ry="3" fill="none" stroke="rgba(10,6,14,0.15)" stroke-width="0.6"/>
+    </svg>
+    <div class="toast-spark" aria-hidden="true"></div>
+    <svg class="glass glass-right" viewBox="0 0 40 150" width="66" height="248">
+      <ellipse cx="20" cy="128" rx="17" ry="3.5" fill="rgba(10,6,14,0.3)"/>
+      <path d="M8 4 C4 30 6 58 17 80 L23 80 C34 58 36 30 32 4 Z" fill="rgba(247,236,217,0.14)" stroke="rgba(247,236,217,0.4)" stroke-width="0.7"/>
+      <path d="M11 14 C8 34 10 56 18 74 L22 74 C30 56 32 34 29 14 Z" fill="var(--coral)"/>
+      <path d="M11 14 C8 34 10 56 18 74" fill="none" stroke="rgba(150,55,40,0.4)" stroke-width="0.8"/>
+      <ellipse cx="20" cy="4.5" rx="12" ry="2" fill="none" stroke="rgba(247,236,217,0.5)" stroke-width="0.8"/>
+      <circle cx="17" cy="62" r="1" fill="var(--cream)" opacity="0.7"/>
+      <circle cx="20.5" cy="46" r="0.8" fill="var(--cream)" opacity="0.6"/>
+      <circle cx="16.5" cy="30" r="1.1" fill="var(--cream)" opacity="0.6"/>
+      <path d="M10 10 C7 30 8 48 13 62" stroke="rgba(255,255,255,0.6)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      <rect x="19" y="80" width="2" height="38" rx="1" fill="var(--cream)"/>
+      <ellipse cx="20" cy="123" rx="12" ry="3" fill="none" stroke="rgba(10,6,14,0.15)" stroke-width="0.6"/>
+      <ellipse cx="20" cy="123" rx="12" ry="3" fill="var(--cream)"/>
+    </svg>
+  </div>
+  <p class="toast-text">Щоб від келиха шампанського<br>ніколи не боліла голова! 🥂</p>
+  <img src="cat-drinking.gif" alt="Котик з келихом" class="toast-cat">
+</section>
+
+<section class="stars reveal" aria-label="Побажання про мрії">
+  <div class="stars-decor" id="stars-decor" aria-hidden="true"></div>
+  <p class="stars-text">Хай кожне загадане бажання<br>обов'язково збудеться! 🌠</p>
+  <img src="cat.gif" alt="Котик загадує бажання" class="stars-cat">
+</section>
+
+<section class="wishes reveal" aria-label="Побажання">
+  <p class="eyebrow eyebrow-center">Маленькі побажання</p>
+  <h2 class="section-title">Відкрий, що всередині</h2>
+  <div class="wish-grid">
+    <div class="wish-card" tabindex="0">
+      <div class="wish-inner">
+        <div class="wish-face wish-front">🎁</div>
+        <div class="wish-face wish-back">Хай кожна кава буде смачною, а черга — короткою</div>
+      </div>
+    </div>
+    <div class="wish-card" tabindex="0">
+      <div class="wish-inner">
+        <div class="wish-face wish-front">🌟</div>
+        <div class="wish-face wish-back">Нехай мрії збуваються швидше, ніж доставка піци</div>
+      </div>
+    </div>
+    <div class="wish-card" tabindex="0">
+      <div class="wish-inner">
+        <div class="wish-face wish-front">✈️</div>
+        <div class="wish-face wish-back">Більше подорожей, менше будильників</div>
+      </div>
+    </div>
+    <div class="wish-card" tabindex="0">
+      <div class="wish-inner">
+        <div class="wish-face wish-front">😄</div>
+        <div class="wish-face wish-back">І щоб усмішка не сходила з обличчя — навіть у понеділок</div>
+      </div>
+    </div>
+  </div>
+  <p class="hint">торкнись картки</p>
+</section>
+
+<footer class="site-footer">
+  <p class="signature">з любов'ю, назавжди твоя подруга</p>
+  <p class="ps">P.S. вибач за дизайн, Клод не шарить, я тим більше)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
