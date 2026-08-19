@@ -40,22 +40,45 @@ const FINAL_ROT = [-4, 3, -6, 5, -3, 4, -5, 2, -2];
 
 photos.forEach((src, i) => {
   const frame = document.createElement('div');
-  frame.className = 'collage-photo reveal-item';
+  frame.className = 'collage-photo';
   const dir = FLY_DIRS[i % FLY_DIRS.length];
   const finalRot = FINAL_ROT[i % FINAL_ROT.length];
   frame.style.setProperty('--fx', dir.fx);
   frame.style.setProperty('--fy', dir.fy);
   frame.style.setProperty('--fr', `${finalRot}deg`);
   frame.style.setProperty('--fr0', `${finalRot * 5}deg`);
-  frame.style.setProperty('--delay', reducedMotion ? '0ms' : `${i * 150}ms`);
+  frame.style.setProperty('--delay', reducedMotion ? '0ms' : `${(i % 2) * 100}ms`);
+
+  const card = document.createElement('div');
+  card.className = 'collage-card';
 
   const img = document.createElement('img');
   img.src = src;
   img.alt = `Юлічка, фото ${i + 1}`;
   img.loading = 'lazy';
-  frame.appendChild(img);
+  card.appendChild(img);
+  frame.appendChild(card);
   collageGrid.appendChild(frame);
 });
+
+// Кожне фото вилітає окремо, коли з'являється на екрані при скролі.
+// Спостерігаємо за нерухомою рамкою (.collage-photo), а не за карткою, що
+// анімовано зміщена трансформацією — інакше на широких екранах зсув
+// (translate у vw/vh) може виносити картку повністю за межі viewport,
+// і вона ніколи не перетне його межі.
+if (reducedMotion) {
+  document.querySelectorAll('.collage-photo').forEach((el) => el.classList.add('in-view'));
+} else {
+  const photoIo = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        photoIo.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+  document.querySelectorAll('.collage-photo').forEach((el) => photoIo.observe(el));
+}
 
 // ---------- Scroll reveal ----------
 const revealEls = document.querySelectorAll('.reveal');
